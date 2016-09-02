@@ -71,15 +71,71 @@ public:
 
     Pattern rotationNinetyDegree()
     {
-        Pattern after(this->d_size);
-
-    
+        int size = this->d_size;
+        Pattern after(size);
+        int aj = size - 1;
+        for(int si = 0; si < size; si++)
+        {    
+            for(int sj = 0; sj < size; sj++)
+            {
+                *after.charAt(sj, aj) = this->d_pattern[si][sj];
+            } 
+            aj--;
+        }
+        return after;
     }
 
-    chat * charAt(int i, int j)
+    Pattern rotation180Degree()
+    {
+       return this->rotationNinetyDegree().rotationNinetyDegree();
+    }
+
+    Pattern rotation270Degree()
+    {
+       return this->rotation180Degree().rotationNinetyDegree();
+    }
+
+    Pattern reflection()
+    {
+        int size = this->d_size;
+        Pattern after(size);
+        int leftEnd, rightStart;
+        int mid = size / 2;
+        bool includeMid = (size % 2 == 0) ;
+
+        if(includeMid) 
+        {
+            leftEnd = mid ;
+            rightStart = mid + 1;
+        } 
+        else 
+        {
+            leftEnd = mid -1;
+            rightStart = mid + 1;
+        }
+
+        for(int i = 0; i < size; i++)
+        for(int j = 0; j <= leftEnd; j++)
+        {
+            *after.charAt(i,j) = this->d_pattern[i][j];
+            *after.charAt(i, size - j - 1) = this->d_pattern[i][j];
+        }
+
+        if(!includeMid)
+        {
+            for(int i = 0; i < size; i++)
+            {
+                *after.charAt(i, mid) = this->d_pattern[i][mid];
+            }
+        
+        }
+        return after; 
+    }
+
+    char* charAt(int i, int j)
     {
         //should check i j
-        return d_pattern[i][j];
+        return &d_pattern[i][j];
     }
 
 
@@ -97,11 +153,15 @@ int main() {
     fin>>n;
     Pattern start(n), end(n);
     fin>>start;
-    fin>>end;
-    cout<<start;
+    cout<<start<<endl;
     cout<<endl;
-    cout<<end;
-    cout<<(start == end)<<endl;
+    cout<<start.reflection()<<endl;
+//    fin>>end;
+//    cout<<start;
+//    cout<<endl;
+//    cout<<end;
+//    cout<<*end.charAt(0,0);
+//    cout<<(start == end)<<endl;
 
 
     return 0;
