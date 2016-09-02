@@ -153,16 +153,37 @@ int main() {
     fin>>n;
     Pattern start(n), end(n);
     fin>>start;
-    cout<<start<<endl;
-    cout<<endl;
-    cout<<start.reflection()<<endl;
-//    fin>>end;
-//    cout<<start;
-//    cout<<endl;
-//    cout<<end;
-//    cout<<*end.charAt(0,0);
-//    cout<<(start == end)<<endl;
-
+    fin>>end;
+    if(start.rotationNinetyDegree() == end)
+    {
+        fout<<1<<endl;
+    }
+    else if(start.rotation180Degree() == end)
+    {
+        fout<<2<<endl;
+    }
+    else if(start.rotation270Degree() == end)
+    {
+        fout<<3<<endl;
+    }
+    else if(start.reflection() == end)
+    {
+        fout<<4<<endl;
+    }
+    else if(start.reflection().rotationNinetyDegree() == end ||
+            start.reflection().rotation180Degree() == end ||
+            start.reflection().rotation270Degree() == end)
+    {
+        fout<<5<<endl;
+    }
+    else if(start == end)
+    {
+        fout<<6<<endl;
+    }
+    else
+    {
+        fout<<7<<endl;
+    }
 
     return 0;
 }
