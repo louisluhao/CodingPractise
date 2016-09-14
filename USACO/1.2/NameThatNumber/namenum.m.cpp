@@ -102,9 +102,16 @@ int main() {
     }
 
 
-    for(iter = dict.begin(); iter != dict.end(); iter++)
+    if(dict.size() > 0)
     {
-        fout<<*iter<<endl;
+        for(iter = dict.begin(); iter != dict.end(); iter++)
+        {
+            fout<<*iter<<endl;
+        }
+    }
+    else
+    {
+        fout<<"NONE"<<endl;
     }
 
 
