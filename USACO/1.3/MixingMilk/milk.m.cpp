@@ -22,10 +22,17 @@ int main() {
     {
         int price, amount;
         fin>>price>>amount;
-        farms.insert(pair<int, int>(price, amount));
+        if(farms.find(price) == farms.end())
+        {
+            farms.insert(pair<int, int>(price, amount));
+        }
+        else
+        {
+            farms[price] += amount;
+        }
     }
 
-    int totalCost = 0;
+    long totalCost = 0;
     //run greedy
     map<int,int>::iterator iter = farms.begin();
     //never check end cause The total milk produced per day by 
