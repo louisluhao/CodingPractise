@@ -6,7 +6,7 @@ LANG: C++
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <set>
+#include <list>
 
 using namespace std;
 
@@ -15,6 +15,8 @@ class Wormhole
 private:
     int x;
     int y;
+    Wormhole& d_pair;
+
 public:
     Wormhole(int x, int y):x(x),y(y){}
     Wormhole():x(-1),y(-1){}
@@ -22,6 +24,8 @@ public:
 
     int getX(){return x;}
     int getY(){return y;}
+    Wormhole& pair(){return d_pair;}
+
     
     bool operator< (const Wormhole& w) const
     {
@@ -34,7 +38,7 @@ public:
 int main() {
     ofstream fout ("wormhole.out");
     ifstream fin ("wormhole.in");
-    set<Wormhole> wormholes;
+    list<Wormhole> wormholes;
     int N;
     fin>>N;
     for(int i = 0; i < N; i++)
@@ -42,9 +46,8 @@ int main() {
         int x,y;
         fin>>x>>y;
         Wormhole wormhole(x,y);
-        wormholes.insert(wormhole);
+        wormholes.push_back(wormhole);
     }
-    cout<<wormholes.size()<<endl;
     
 
     return 0;
