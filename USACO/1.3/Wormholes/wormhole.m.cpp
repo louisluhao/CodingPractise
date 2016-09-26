@@ -6,6 +6,7 @@ LANG: C++
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <set>
 
 using namespace std;
 
@@ -21,14 +22,30 @@ public:
 
     int getX(){return x;}
     int getY(){return y;}
-
     
-
+    bool operator< (const Wormhole& w) const
+    {
+        if(y < w.y) return true;
+        if(x < w.x) return true;
+        return false;
+    }
 };
 
 int main() {
     ofstream fout ("wormhole.out");
     ifstream fin ("wormhole.in");
+    set<Wormhole> wormholes;
+    int N;
+    fin>>N;
+    for(int i = 0; i < N; i++)
+    {
+        int x,y;
+        fin>>x>>y;
+        Wormhole wormhole(x,y);
+        wormholes.insert(wormhole);
+    }
+    cout<<wormholes.size()<<endl;
+    
 
     return 0;
 }
