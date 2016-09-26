@@ -1,6 +1,6 @@
 /*
 ID: louislu1
-PROG: test
+PROG: wormhole
 LANG: C++
 */
 #include <iostream>
@@ -9,11 +9,26 @@ LANG: C++
 
 using namespace std;
 
+class Wormhole
+{
+private:
+    int x;
+    int y;
+public:
+    Wormhole(int x, int y):x(x),y(y){}
+    Wormhole():x(-1),y(-1){}
+    ~Wormhole(){}
+
+    int getX(){return x;}
+    int getY(){return y;}
+
+    
+
+};
+
 int main() {
-    ofstream fout ("test.out");
-    ifstream fin ("test.in");
-    int a, b;
-    fin >> a >> b;
-    fout << a+b << endl;
+    ofstream fout ("wormhole.out");
+    ifstream fin ("wormhole.in");
+
     return 0;
 }
